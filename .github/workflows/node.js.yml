@@ -72,14 +72,11 @@ jobs:
           node-version: 18.x
           cache: 'npm'
 
+      - name: Install dependencies
+        run: npm ci # Bổ sung bước này
+
       - name: Build project
         run: npm run build --if-present
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output
-          path: dist/
 
   test-unit:
     runs-on: ubuntu-latest
