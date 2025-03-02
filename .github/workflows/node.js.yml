@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [20.x]
+        node-version: [20.x]  # Đồng bộ Node.js 20.x cho tất cả các job
 
     steps:
       - name: Checkout repository
@@ -33,7 +33,7 @@ jobs:
             npm-${{ runner.os }}-${{ matrix.node-version }}-
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install # Thay npm ci bằng npm install nếu cần
 
   lint:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: 'npm'
 
       - name: Run ESLint
@@ -69,11 +69,11 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci # Bổ sung bước này
+        run: npm install 
 
       - name: Build project
         run: npm run build --if-present
@@ -88,11 +88,11 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: 'npm'
 
-      - name: Install dependencies (Ensure vitest is installed)
-        run: npm ci
+      - name: Install dependencies
+        run: npm install
 
       - name: Run Unit Tests
         run: |
@@ -101,6 +101,9 @@ jobs:
           else
             echo "Skipping unit tests (script not found)"
           fi
+
+      - name: Ensure coverage directory exists
+        run: mkdir -p coverage
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -118,11 +121,11 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run Integration Tests
         run: |
@@ -131,6 +134,9 @@ jobs:
           else
             echo "Skipping integration tests (script not found)"
           fi
+
+      - name: Ensure coverage directory exists
+        run: mkdir -p coverage
 
       - name: Upload integration test results
         uses: actions/upload-artifact@v4
@@ -149,11 +155,11 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Set execute permission for deploy script
         run: chmod +x deploy.sh || echo "No deploy script found"
