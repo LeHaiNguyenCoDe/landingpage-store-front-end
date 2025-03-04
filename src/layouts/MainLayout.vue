@@ -1,20 +1,24 @@
 <template>
-  <div>
+  <section class="space-y-3vw">
     <header>
       <HeaderLayout />
     </header>
 
-    <main>
-      <router-view />
+    <main class="space-y-3vw">
+      <!-- <router-view /> -->
+      <RoomInspiration />
+      <PromoSlider />
     </main>
 
     <footer>
       <FooterLayout />
     </footer>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
 import FooterLayout from '@/layouts/FooterLayout.vue'
 import HeaderLayout from '@/layouts/HeaderLayout.vue'
+import RoomInspiration from '@/components/sliderSection/RoomInspiration.vue';
+import PromoSlider from '@/components/sliderSection/PromoSlider.vue';
 </script>
