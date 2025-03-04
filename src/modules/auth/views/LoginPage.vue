@@ -9,10 +9,9 @@
 import LoginForm from '../components/LoginForm.vue';
 import { useAuthStore } from '@/modules/auth';
 import { fakeAuthApi } from '@/services/authService';
-
-// Interface người dùng từ store
 interface User {
   username: string;
+  password: string;
   token: string;
 }
 
@@ -20,11 +19,12 @@ const authStore = useAuthStore();
 
 const handleLogin = async (userData: { username: string; password: string }) => {
   try {
-    const response = await fakeAuthApi(userData); // Giả lập API trả về token
+    const response = await fakeAuthApi(userData);
 
     const userWithToken: User = {
       username: userData.username,
-      token: String(response.token) // Ép kiểu token về string để đảm bảo đúng định dạng
+      password: userData.password,
+      token: String(response.token)
     };
 
     await authStore.login(userWithToken as User);
