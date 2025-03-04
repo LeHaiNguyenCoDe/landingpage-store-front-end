@@ -162,10 +162,10 @@ jobs:
         run: npm install -g vercel
 
       - name: Set up Vercel project
-        run: vercel link --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel link --yes --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel
-        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
 
   # deploy:
   #   runs-on: ubuntu-latest
