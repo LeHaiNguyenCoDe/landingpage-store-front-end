@@ -1,7 +1,6 @@
 <template>
-  <main>
-    <h1>Home Page</h1>
-  </main>
+  <!-- Nó sẽ chứa các components HeroNav MenuNav OrderNav-->
+    HeaderLayout
 </template>
 
 <script lang="ts" setup>

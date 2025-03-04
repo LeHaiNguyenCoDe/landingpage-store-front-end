@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <h1>Header</h1>
+      <HeaderLayout />
     </header>
 
     <main>
@@ -9,7 +9,12 @@
     </main>
 
     <footer>
-      <p>Footer</p>
+      <FooterLayout />
     </footer>
   </div>
 </template>
+
+<script lang="ts" setup>
+import FooterLayout from '@/layouts/FooterLayout.vue'
+import HeaderLayout from '@/layouts/HeaderLayout.vue'
+</script>
