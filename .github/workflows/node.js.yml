@@ -163,9 +163,15 @@ jobs:
 
       - name: Deploy to Vercel
         run: |
-          vercel --prod --token=${{ secrets.VERCEL_TOKEN }} \
-            --org-id=${{ secrets.VERCEL_ORG_ID }} \
-            --project-id=${{ secrets.VERCEL_PROJECT_ID }}
+          if [ -z "${{ secrets.VERCEL_ORG_ID }}" ]; then
+            # Nếu không có ORG_ID -> Deploy cho tài khoản cá nhân
+            vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --project-id=${{ secrets.VERCEL_PROJECT_ID }}
+          else
+            # Nếu có ORG_ID -> Deploy cho Team
+            vercel --prod --token=${{ secrets.VERCEL_TOKEN }} \
+              --org-id=${{ secrets.VERCEL_ORG_ID }} \
+              --project-id=${{ secrets.VERCEL_PROJECT_ID }}
+          fi
 
   # deploy:
   #   runs-on: ubuntu-latest
