@@ -1,61 +1,39 @@
-# code
+Fork from Base
+- Chỉ Fork 1 branch từ Base `base/release`
+- Sau khi fork, tạo nhánh mới (dev) thì chạy lệnh
+- `git reset $(git commit-tree 'HEAD^{tree}' -m "Initial commit from dev")` để reset tất cả commit từ kit về 1 commit sạch git
+# Base source VUE4
+- CMS: Laravel
+- Frontend: VUEJS4 (VUE4)
 
-This template should help get you started developing with Vue 3 in Vite.
+## How to use:
+- Fork from WebKit
+- Clone your forked repo
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-yarn
+Add Upstream and Fetch from Upstream
+```bash
+git remote -v
+git pull upstream `base/release`
 ```
 
-### Compile and Hot-Reload for Development
+## Custom Icon:
+- Export SVG icon từ design vào folder `app/icons` dạng `app/icons/file-name.svg`. VD: `app/icons/star.svg`
+- Dùng class để  `i-custom-file-name` hiển thị icon. Vd : `<i class="i-custom-star text-2xl"></i> `
 
-```sh
-yarn dev
-```
+## Responsive font size, width, height, spacing theo min, max
+- VD: `f-text-32-64` - mobile: `32px`, pc: `64px`, ở giữa khoảng này tự thay đổi
+- Xem: https://renatomoor.github.io/unocss-preset-fluid/examples.html
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-yarn build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-yarn test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-yarn test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-yarn build
-yarn test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-yarn lint
+## Rule middleware NuxtApi
+- Các Api dành cho user đã đăng nhập hiện tại chưa bắt buộc phải có token, khi request endpoint đó, mà ko truyền token kèm header nhận dạng, hệ thống tự động đưa Connection bằng API
+  - Đây là lỗ hồng bảo mật
+- `server/middleware/auth.require.ts`: thêm các path cần apply kiểm tra user đã đăng nhập vào `pathsRequireAuth`
+- api.instance.ts: sẽ kiểm tra nếu event có yêu cầu đăng nhập, mà user ko có accesstoken thì sẽ trả về lỗi `401`
+```ts
+    if (!userAccessToken && event.require_auth) {
+        return {
+            statusCode: 401,
+            error: 'Unauthorized access'
+        }
+    }
 ```
