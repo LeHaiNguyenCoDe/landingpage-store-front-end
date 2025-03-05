@@ -8,6 +8,7 @@
       <!-- <router-view /> -->
       <RoomInspiration />
       <PromoSlider />
+      <ItemsSection />
     </main>
 
     <footer>
@@ -21,4 +22,5 @@ import FooterLayout from '@/layouts/FooterLayout.vue'
 import HeaderLayout from '@/layouts/HeaderLayout.vue'
 import RoomInspiration from '@/components/sliderSection/RoomInspiration.vue';
 import PromoSlider from '@/components/sliderSection/PromoSlider.vue';
+import ItemsSection from '@/components/itemsSection/ItemsSection.vue';
 </script>

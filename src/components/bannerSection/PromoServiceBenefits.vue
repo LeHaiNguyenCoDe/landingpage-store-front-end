@@ -1,15 +1,15 @@
 <template>
   <section class="container mx-auto">
-    <div class="flex justify-between items-center space-x-6">
+    <div class="flex justify-between items-center space-x-3vw">
       <div
         v-for="(feature, index) in features"
         :key="index"
-        class="flex items-center space-x-3"
+        class="flex items-center space-x-1.5vw"
       >
         <img :src="feature.image" alt="" class="f-w-18-32">
         <div>
-          <h3 class="f-text-10-18 font-semibold text-[#3A3A3A]">{{ feature.title }}</h3>
-          <p class="text-[#898989] f-text-8-14">{{ feature.description }}</p>
+          <h3 class="f-text-6-18 font-semibold text-[#3A3A3A]">{{ feature.title }}</h3>
+          <p class="text-[#898989] f-text-6-14">{{ feature.description }}</p>
         </div>
       </div>
     </div>
