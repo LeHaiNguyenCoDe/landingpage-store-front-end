@@ -13,8 +13,8 @@
       class="w-full p-2vw"
     >
       <swiper-slide v-for="(post, index) in posts" :key="index">
-        <div class="bg-white">
-          <img :src="post.image" alt="Post Image" class="w-30vw h-15vw object-cover">
+        <div class="bg-white hover:text-gray-500">
+          <div class="overflow-hidden"><img :src="post.image" alt="Post Image" class="w-30vw h-15vw object-cover hover:scale-110 transition-transform duration-300"></div>
           <div class="f-p-0-4">
             <h3 class="f-text-10-24 font-semibold" v-html="post.title"></h3>
             <p class="text-gray-500 f-text-8-14">{{ post.date }}</p>
@@ -50,7 +50,7 @@ import arrowleft from "@/assets/main-image/arrowleft.svg";
 
 const modules = ref([Navigation, Pagination]);
 
-const posts = [
+const posts = ref([
   {
     title: "How to create a living <br> room to love",
     date: "20 Jan 2020",
@@ -81,7 +81,7 @@ const posts = [
     date: "20 Jan 2020",
     image: slider_image_03
   }
-];
+]);
 </script>
 <style scoped>
 :deep(.custom-pagination .swiper-pagination-bullet-active) {

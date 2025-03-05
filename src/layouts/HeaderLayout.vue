@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import PromoBanner from '@/components/bannerSection/PromoBanner.vue';
-import PromoServiceBenefits from '@/components/bannerSection/PromoServiceBenefits.vue';
-import ProductList from '@/components/productSection/ProductList.vue';
+import PromoBanner from '@/modules/home_page/components/bannerSection/PromoBanner.vue';
+import PromoServiceBenefits from '@/modules/home_page/components/bannerSection/PromoServiceBenefits.vue';
+import ProductList from '@/modules/home_page/components//productSection/ProductList.vue';
 </script>
 
 <style lang="scss" scoped>
