@@ -1,13 +1,14 @@
 <template>
-  <footer class="container mx-auto my-2vw">
+  <footer class="container mx-auto my-2vw space-y-3vw">
+    <div class="w-full border border-[#D8D8D8]"></div>
     <div class="flex flex-wrap justify-between">
-      <div v-for="(section, key) in footerData" :key="key" class="flex flex-col space-y-2 max-w-xs">
-        <h3 class="f-text-16-24 font-bold mb-3">{{ section.title }}</h3>
+      <div v-for="(section, key) in footerData" :key="key" class="flex flex-col space-y-1vw max-w-xs">
+        <h3 class="f-text-12-24 font-bold mb-3">{{ section.title }}</h3>
         <a
           v-for="(item, index) in section.items"
           :key="index"
           :href="'#'"
-          class="text-[#616161] f-text-10-16"
+          class="text-[#616161] f-text-8-16"
           v-html="item.label"
         >
         </a>

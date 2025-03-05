@@ -4,10 +4,9 @@
       <HeaderLayout />
     </header>
 
-    <main class="space-y-3vw">
+    <main>
       <!-- <router-view /> -->
-      <RoomInspiration />
-      <PromoSlider />
+      <HomePage />
     </main>
 
     <footer>
@@ -19,6 +18,5 @@
 <script lang="ts" setup>
 import FooterLayout from '@/layouts/FooterLayout.vue'
 import HeaderLayout from '@/layouts/HeaderLayout.vue'
-import RoomInspiration from '@/components/sliderSection/RoomInspiration.vue';
-import PromoSlider from '@/components/sliderSection/PromoSlider.vue';
+import HomePage from '@/modules/home_page/views/HomePage.vue';
 </script>
