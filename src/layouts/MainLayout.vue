@@ -1,5 +1,5 @@
 <template>
-  <section class="space-y-3vw">
+  <section class="space-y-5vw">
     <header>
       <HeaderLayout />
     </header>
