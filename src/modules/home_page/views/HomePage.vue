@@ -1,5 +1,5 @@
 <template>
-  <main class="space-y-3vw">
+  <main class="space-y-5vw">
       <PromoServiceBenefits />
       <ProductList />
       <RoomInspiration />

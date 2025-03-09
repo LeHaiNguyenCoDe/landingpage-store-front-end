@@ -51,6 +51,13 @@ export default defineConfig({
       colors: {
           primary: "#2ECDA7",
           "100": "#CBF3E9",
+          title: "#3A3A3A",
+          classic: "#616161",
+          banner: "#898989",
+          btnorange: "#E89F71",
+          mediumWhite: "#F4F5F7",
+          new: "#E97171",
+          discount: "#2EC1AC"
       },
       fontSize: {},
       container: {

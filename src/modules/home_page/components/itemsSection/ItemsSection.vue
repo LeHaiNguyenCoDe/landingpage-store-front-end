@@ -1,8 +1,8 @@
 <template>
   <section class="flex flex-col items-center">
     <div class="flex flex-col items-center">
-      <span class="text-[#616161] f-text-10-20">Share your setup with</span>
-      <span class="f-text-16-40 text-[#3A3A3A] font-bold">#FuniroFurniture</span>
+      <span class="text-classic f-text-10-20">Share your setup with</span>
+      <span class="f-text-16-40 text-title font-bold">#FuniroFurniture</span>
     </div>
     <div class="flex gap-1vw items-center">
       <div class="flex flex-col w-fit gap-1vw">
@@ -37,7 +37,7 @@
       @click="closeModal"
     >
       <div class="relative" @click.stop>
-        <img :src="selectedImage" alt="Preview" class="w-20vw h-auto" />
+        <img :src="selectedImage" alt="Preview" class="xl:w-30vw md:w-70vw w-80vw h-auto" />
       </div>
     </div>
   </section>

@@ -8,7 +8,7 @@
           v-for="(item, index) in section.items"
           :key="index"
           :href="'#'"
-          class="text-[#616161] f-text-8-16"
+          class="text-classic f-text-8-16"
           v-html="item.label"
         >
         </a>

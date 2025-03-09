@@ -1,6 +1,6 @@
 <template>
   <section class="container mx-auto relative overflow-visible">
-    <h2 class="text-center f-text-24-40 font-bold mb-2vw text-[#3A3A3A]">Tips & Tricks</h2>
+    <h2 class="text-center f-text-24-40 font-bold mb-2vw text-title">Tips & Tricks</h2>
     <swiper
       :slides-per-view="3"
       :space-between="20"
@@ -85,12 +85,6 @@ const posts = ref([
 </script>
 <style scoped>
 :deep(.custom-pagination .swiper-pagination-bullet-active) {
-  @apply w-[0.5vw] h-[0.5vw] bg-[#E89F71] relative rounded-full transition-all duration-300 scale-200;
+  @apply w-[2] h-[2] bg-[#E89F71] relative rounded-full transition-all duration-300;
 }
-
-/* :deep(.custom-pagination .swiper-pagination-bullet-active)::before {
-  content: "";
-  @apply absolute inset-[0] w-[1vw] h-[1vw] border border-[#E89F71] rounded-full scale-100;
-} */
-
 </style>
