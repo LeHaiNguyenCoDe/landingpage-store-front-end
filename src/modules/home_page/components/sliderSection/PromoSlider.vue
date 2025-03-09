@@ -13,7 +13,7 @@
       class="w-full p-2vw"
     >
       <swiper-slide v-for="(post, index) in posts" :key="index">
-        <div class="bg-white hover:text-gray-500">
+        <div class="bg-white hover:bg-gray-100">
           <div class="overflow-hidden"><img :src="post.image" alt="Post Image" class="w-30vw h-15vw object-cover hover:scale-110 transition-transform duration-300"></div>
           <div class="f-p-0-4">
             <h3 class="f-text-10-24 font-semibold" v-html="post.title"></h3>
@@ -24,11 +24,11 @@
     </swiper>
 
     <!-- Nút điều hướng tùy chỉnh -->
-    <button class="custom-prev absolute z-10 left-0 top-2/5 f-w-36-68 cursor-pointer">
-      <img :src="arrowleft" alt="Previous">
+    <button class="custom-prev f-w-18-44 f-h-18-44 bg-white absolute z-10 left-0.5vw top-2/5 cursor-pointer rounded-full flex items-center justify-center shadow-xl">
+      <i class="i-custom-arrowprev text-btnorange f-w-12-16 f-h-12-16"></i>
     </button>
-    <button class="custom-next absolute z-10 right-0 top-2/5 f-w-36-68 cursor-pointer">
-      <img :src="arrow" alt="Next">
+    <button class="custom-next f-w-18-44 f-h-18-44 bg-white absolute z-10 right-0.5vw top-2/5 cursor-pointer rounded-full flex items-center justify-center shadow-xl">
+      <i class="i-custom-arrowprev text-btnorange f-w-12-16 f-h-12-16 transform-rotate-180"></i>
     </button>
     <div class="custom-pagination mt-4 flex justify-center space-x-1vw"></div>
   </section>
@@ -42,44 +42,38 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { ref } from "vue";
 
-import slider_image_01 from "@/assets/slider-image/slider_image_01.png";
-import slider_image_02 from "@/assets/slider-image/slider_image_02.png";
-import slider_image_03 from "@/assets/slider-image/slider_image_03.png";
-import arrow from "@/assets/main-image/arrow.svg";
-import arrowleft from "@/assets/main-image/arrowleft.svg";
-
 const modules = ref([Navigation, Pagination]);
 
 const posts = ref([
   {
     title: "How to create a living <br> room to love",
     date: "20 Jan 2020",
-    image: slider_image_01
+    image: "./src/assets/slider-image/slider_image_01.png"
   },
   {
     title: "Solution for clean look working space",
     date: "10 Jan 2020",
-    image: slider_image_02
+    image: "./src/assets/slider-image/slider_image_02.png"
   },
   {
     title: "Make your cooking activity more fun with good setup",
     date: "20 Jan 2020",
-    image: slider_image_03
+    image: "./src/assets/slider-image/slider_image_03.png"
   },
   {
     title: "How to create a living <br> room to love",
     date: "20 Jan 2020",
-    image: slider_image_01
+    image: "./src/assets/slider-image/slider_image_01.png"
   },
   {
     title: "Solution for clean look working space",
     date: "10 Jan 2020",
-    image: slider_image_02
+    image: "./src/assets/slider-image/slider_image_02.png"
   },
   {
     title: "Make your cooking activity more fun with good setup",
     date: "20 Jan 2020",
-    image: slider_image_03
+    image: "./src/assets/slider-image/slider_image_03.png"
   }
 ]);
 </script>
