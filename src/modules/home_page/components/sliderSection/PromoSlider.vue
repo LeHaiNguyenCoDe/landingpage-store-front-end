@@ -48,32 +48,32 @@ const posts = ref([
   {
     title: "How to create a living <br> room to love",
     date: "20 Jan 2020",
-    image: "./src/assets/slider-image/slider_image_01.png"
+    image: "/slider-image/slider_image_01.png"
   },
   {
     title: "Solution for clean look working space",
     date: "10 Jan 2020",
-    image: "./src/assets/slider-image/slider_image_02.png"
+    image: "/slider-image/slider_image_02.png"
   },
   {
     title: "Make your cooking activity more fun with good setup",
     date: "20 Jan 2020",
-    image: "./src/assets/slider-image/slider_image_03.png"
+    image: "/slider-image/slider_image_03.png"
   },
   {
     title: "How to create a living <br> room to love",
     date: "20 Jan 2020",
-    image: "./src/assets/slider-image/slider_image_01.png"
+    image: "/slider-image/slider_image_01.png"
   },
   {
     title: "Solution for clean look working space",
     date: "10 Jan 2020",
-    image: "./src/assets/slider-image/slider_image_02.png"
+    image: "/slider-image/slider_image_02.png"
   },
   {
     title: "Make your cooking activity more fun with good setup",
     date: "20 Jan 2020",
-    image: "./src/assets/slider-image/slider_image_03.png"
+    image: "/slider-image/slider_image_03.png"
   }
 ]);
 </script>
