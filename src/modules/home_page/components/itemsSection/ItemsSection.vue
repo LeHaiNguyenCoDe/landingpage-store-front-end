@@ -1,31 +1,31 @@
 <template>
   <section class="flex flex-col items-center">
     <div class="flex flex-col items-center">
-      <span class="text-classic f-text-10-20">Share your setup with</span>
-      <span class="f-text-16-40 text-title font-bold">#FuniroFurniture</span>
+      <span class="text-classic f-text-10-20">{{ shareContent.text }}</span>
+      <span class="f-text-16-40 text-title font-bold">{{ shareContent.hashtag }}</span>
     </div>
     <div class="flex gap-1vw items-center">
       <div class="flex flex-col w-fit gap-1vw">
         <div class="flex gap-1vw">
-          <HoverImage :src="items_01" class="w-12vw h-25vw" @click="openModal(items_01)" />
-          <HoverImage :src="items_02" class="w-32.5vw h-20vw self-end" @click="openModal(items_02)" />
+          <HoverImage :src="images[0]" class="w-12vw h-25vw object-cover" @click="openModal(images[0])" />
+          <HoverImage :src="images[1]" class="w-32.5vw h-20vw self-end object-cover" @click="openModal(images[1])" />
         </div>
         <div class="flex gap-1vw">
-          <HoverImage :src="items_03" class="w-18vw h-20vw" @click="openModal(items_03)" />
-          <HoverImage :src="items_04" class="w-26.5vw h-16vw" @click="openModal(items_04)" />
+          <HoverImage :src="images[2]" class="w-18vw h-20vw object-cover" @click="openModal(images[2])" />
+          <HoverImage :src="images[3]" class="w-26.5vw h-16vw object-cover" @click="openModal(images[3])" />
         </div>
       </div>
       <div class="w-fit">
-        <HoverImage :src="items_05" class="h-25vw w-20vw" @click="openModal(items_05)" />
+        <HoverImage :src="images[4]" class="h-25vw w-20vw object-cover" @click="openModal(images[4])" />
       </div>
       <div class="flex flex-col w-fit gap-1vw">
         <div class="flex gap-1vw">
-          <HoverImage :src="items_06" class="w-20vw h-23vw self-end" @click="openModal(items_06)" />
-          <HoverImage :src="items_07" class="w-10vw h-30vw" @click="openModal(items_07)" />
+          <HoverImage :src="images[5]" class="w-20vw h-23vw self-end object-cover" @click="openModal(images[5])" />
+          <HoverImage :src="images[6]" class="w-10vw h-30vw object-cover" @click="openModal(images[6])" />
         </div>
         <div class="flex gap-1vw">
-          <HoverImage :src="items_08" class="w-12vw h-15vw" @click="openModal(items_08)" />
-          <HoverImage :src="items_09" class="w-18vw h-12vw" @click="openModal(items_09)" />
+          <HoverImage :src="images[7]" class="w-12vw h-15vw object-cover" @click="openModal(images[7])" />
+          <HoverImage :src="images[8]" class="w-18vw h-12vw object-cover" @click="openModal(images[8])" />
         </div>
       </div>
     </div>
@@ -43,18 +43,25 @@
   </section>
 </template>
 
+
 <script lang="ts" setup>
 import { ref } from "vue";
-import items_01 from "@/assets/items-image/items_01.png";
-import items_02 from "@/assets/items-image/items_02.png";
-import items_03 from "@/assets/items-image/items_03.png";
-import items_04 from "@/assets/items-image/items_04.png";
-import items_05 from "@/assets/items-image/items_05.png";
-import items_06 from "@/assets/items-image/items_06.png";
-import items_07 from "@/assets/items-image/items_07.png";
-import items_08 from "@/assets/items-image/items_08.png";
-import items_09 from "@/assets/items-image/items_09.png";
 import HoverImage from "@/modules/home_page/components/itemsSection/HoverImage.vue";
+const shareContent = ref({
+  text: "Share your setup with",
+  hashtag: "#FuniroFurniture"
+});
+const images = [
+  "./src/assets/items-image/items_01.png",
+  "./src/assets/items-image/items_02.png",
+  "./src/assets/items-image/items_03.png",
+  "./src/assets/items-image/items_04.png",
+  "./src/assets/items-image/items_05.png",
+  "./src/assets/items-image/items_06.png",
+  "./src/assets/items-image/items_07.png",
+  "./src/assets/items-image/items_08.png",
+  "./src/assets/items-image/items_09.png",
+];
 
 const selectedImage = ref<string | null>(null);
 
@@ -66,3 +73,4 @@ const closeModal = () => {
   selectedImage.value = null;
 };
 </script>
+
