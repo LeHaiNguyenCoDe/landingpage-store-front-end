@@ -51,19 +51,19 @@
 import { computed, ref } from "vue"
 const slides = ref([
   {
-    image: "./src/assets/main-image/main_img01.png",
+    image: "/main-image/main_img01.png",
     number: '01',
     roomName: 'Bed room',
     text: 'Inner Peace'
   },
   {
-    image: "./src/assets/main-image/main_img02.png",
+    image: "/main-image/main_img02.png",
     number: '02',
     roomName: 'Living room',
     text: '(UX/UI)'
   },
   {
-    image: "./src/assets/main-image/main_img03.png",
+    image: "/main-image/main_img03.png",
     number: '03',
     roomName: 'Bath room',
     text: 'khách hàng'

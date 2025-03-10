@@ -38,10 +38,14 @@
               <!-- Panel -->
               <div
                 v-if="isVisible"
-                class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-lg p-1vw flex flex-col"
+                class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-lg p-1vw flex flex-col items-center gap-1vw"
               >
-                <button class="font-semibold f-text-8-16 cursor-pointer">Đăng nhập</button>
-                <button class="mt-1vw text-red-500 f-text-8-16 cursor-pointer">Đăng ký</button>
+                <router-link to="/login">
+                  <span class="font-semibold f-text-8-16 cursor-pointer">Đăng nhập</span>
+                </router-link>
+                <router-link to="/register">
+                  <span class=" text-red-500 f-text-8-16 cursor-pointer">Đăng ký</span>
+                </router-link>
               </div>
             </div>
           </div>
@@ -109,19 +113,19 @@ const goToSlide = (index: number) => {
 };
 const slides = ref([
   {
-    image: './src/assets/image-banner/left_image.png',
+    image: '/image-banner/left_image.png',
     name: '02',
     detail: 'Living room',
     price: '(UX/UI)'
   },
   {
-    image: "./src/assets/image-banner/main_image.png",
+    image: "/image-banner/main_image.png",
     name: 'Bohauss',
     detail: 'Luxury big sofa 2-seat',
     price: 'Rp 17.000.000'
   },
   {
-    image: "./src/assets/image-banner/right_image.png",
+    image: "/image-banner/right_image.png",
     name: '03',
     detail: 'Bath room',
     price: 'khách hàng'
