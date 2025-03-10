@@ -52,15 +52,15 @@ const shareContent = ref({
   hashtag: "#FuniroFurniture"
 });
 const images = [
-  "./src/assets/items-image/items_01.png",
-  "./src/assets/items-image/items_02.png",
-  "./src/assets/items-image/items_03.png",
-  "./src/assets/items-image/items_04.png",
-  "./src/assets/items-image/items_05.png",
-  "./src/assets/items-image/items_06.png",
-  "./src/assets/items-image/items_07.png",
-  "./src/assets/items-image/items_08.png",
-  "./src/assets/items-image/items_09.png",
+  "/items-image/items_01.png",
+  "/items-image/items_02.png",
+  "/items-image/items_03.png",
+  "/items-image/items_04.png",
+  "/items-image/items_05.png",
+  "/items-image/items_06.png",
+  "/items-image/items_07.png",
+  "/items-image/items_08.png",
+  "/items-image/items_09.png",
 ];
 
 const selectedImage = ref<string | null>(null);
