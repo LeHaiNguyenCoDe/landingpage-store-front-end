@@ -13,7 +13,7 @@
       class="w-full p-2vw"
     >
       <swiper-slide v-for="(post, index) in posts" :key="index">
-        <div class="bg-white hover:bg-gray-100">
+        <div class="bg-white hover:text-gray-500">
           <div class="overflow-hidden"><img :src="post.image" alt="Post Image" class="w-30vw h-15vw object-cover hover:scale-110 transition-transform duration-300"></div>
           <div class="f-p-0-4">
             <h3 class="f-text-10-24 font-semibold" v-html="post.title"></h3>

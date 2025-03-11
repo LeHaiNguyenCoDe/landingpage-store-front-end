@@ -6,7 +6,7 @@
 
     <div class="relative z-0 h-fit">
       <transition name="slide" mode="out-in">
-        <img :src="mainImage.image" :key="mainImage.image" alt="" class="w-65vw h-40vw">
+        <img :src="mainImage.image" :key="mainImage.image" alt="" class="w-65vw h-40vw object-cover">
       </transition>
       <transition name="slide" mode="out-in">
         <div
