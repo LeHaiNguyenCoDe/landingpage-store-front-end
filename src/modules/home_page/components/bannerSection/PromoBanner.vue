@@ -38,7 +38,7 @@
               <!-- Panel -->
               <div
                 v-if="isVisible"
-                class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-md p-1vw flex flex-col gap-1vw z-10 text-title"
+                class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-md p-1vw flex flex-col gap-1vw z-1 text-title"
               >
                 <div class="w-full flex flex-col">
                   <span class="f-text-16-28 font-medium">Funiro.</span>
