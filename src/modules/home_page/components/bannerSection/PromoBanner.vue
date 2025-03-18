@@ -56,13 +56,7 @@
       </div>
     </div>
     <div class="w-55vw mx-4vw flex justify-between py-2vw self-end px-2vw">
-      <div class="flex justify-center mt-1vw">
-        <span v-for="(slide, index) in slides" :key="index"
-          class="w-2 h-2 mx-1 rounded-full cursor-pointer transition-all duration-300"
-          :class="currentIndex === index ? 'bg-btnorange' : 'bg-gray-300'"
-          @click="goToSlide(index)">
-        </span>
-      </div>
+      <Paginations :slides="slides" :currentIndex="currentIndex" :goToSlide="goToSlide"/>
       <div class="flex gap-1vw">
         <button class="bg-orange-200 f-w-18-48 f-h-18-48 cursor-pointer rounded-full flex items-center justify-center" @click="prevSlide"><i class="i-custom-arrowprev f-w-12-16 f-h-12-16 bg-btnorange"></i></button>
         <button class="bg-btnorange f-w-18-48 f-h-18-48 cursor-pointer rounded-full flex items-center justify-center" @click="nextSlide"><i class="i-custom-arrow f-w-12-16 f-h-12-16"></i></button>
@@ -79,30 +73,6 @@
           {{ bannerContent.buttonText }}
         </button>
       </div>
-    <!-- <div class="flex justify-between items-center">
-      <transition name="slide" mode="out-in">
-        <img :src="leftSlide.image" :key="leftSlide.image" alt="" class="w-25vw h-40vw object-cover">
-      </transition>
-
-      <div class="relative z-0 h-fit">
-        <transition name="slide" mode="out-in">
-          <img :src="mainSlide.image" :key="mainSlide.image" alt="" class="w-65vw h-40vw">
-        </transition>
-        <transition name="slide" mode="out-in">
-          <div
-            class="absolute z-10 flex flex-col bg-white p-1vw right-2vw bottom-2vw opacity-90 xl:w-17vw md:w-20vw w-30vw h-auto"
-            :key="mainSlide.name">
-            <span class="font-medium f-text-12-32 text-title">{{ mainSlide.name }}</span>
-            <span class="text-classic f-text-10-16">{{ mainSlide.detail }}</span>
-            <span class="text-title f-text-10-20">{{ mainSlide.price }}</span>
-          </div>
-        </transition>
-      </div>
-
-      <transition name="slide" mode="out-in">
-        <img :src="rightSlide.image" :key="rightSlide.image" alt="" class="w-3vw h-40vw object-cover">
-      </transition>
-    </div> -->
     <ImageBanner :leftImage="leftSlide" :mainImage="mainSlide" :rightImage="rightSlide" />
   </section>
 </template>
@@ -111,79 +81,27 @@
 <script lang="ts" setup>
 import ImageBanner from "./ImageBanner.vue";
 import { computed, onMounted, onUnmounted, ref } from "vue"
+import { useProductStore, useAuth, useItemsStore, useBannerStore } from "@/modules/home_page/store/banner";
+
+import Paginations from '@/modules/ui/PromoPaginations.vue';
+const currentIndex = ref(0);
 const goToSlide = (index: number) => {
   currentIndex.value = index;
 };
-const slides = ref([
-  {
-    image: '/image-banner/left_image.png',
-    name: '02',
-    detail: 'Living room',
-    price: '(UX/UI)'
-  },
-  {
-    image: "/image-banner/main_image.png",
-    name: 'Bohauss',
-    detail: 'Luxury big sofa 2-seat',
-    price: 'Rp 17.000.000'
-  },
-  {
-    image: "/image-banner/right_image.png",
-    name: '03',
-    detail: 'Bath room',
-    price: 'khách hàng'
-  }
-]);
 
-const auth = ref([
-  {
-    icons: "",
-    content: "Thông tin cá nhân",
-    link: "#"
-  },
-  {
-    icons: "",
-    content: "Cài đặt hệ thống",
-    link: "#"
-  },
-  {
-    icons: "",
-    content: "Ngôn ngữ",
-    link: "#"
-  },
-  {
-    icons: "",
-    content: "Hỗ trợ khách hàng",
-    link: "#"
-  },
-  {
-    icons: "",
-    content: "Hướng dẫn sử dụng",
-    link: "#"
-  },
-  {
-    icons: "",
-    content: "Thay đổi mật khẩu",
-    link: "#"
-  },
-  {
-    icons: "",
-    content: "Đăng xuất",
-    link: "/login"
-  },
-]);
-const menuItems = ref([
-  { name: "Products", link: "#" },
-  { name: "Rooms", link: "#" },
-  { name: "Inspirations", link: "#" }
-]);
+const productStore = useProductStore();
+const slides = ref(productStore.products);
+const authStore = useAuth();
 
-const bannerContent = ref({
-  title: "High-Quality Furniture Just For You",
-  description: "Our furniture is made from selected and best quality materials that are suitable for your dream home",
-  buttonText: "Shop Now"
-});
-const currentIndex = ref(0);
+const auth = ref(authStore.auth);
+
+const itemsStore = useItemsStore();
+
+const menuItems = ref(itemsStore.menuItems);
+
+const bannerStore = useBannerStore();
+
+const bannerContent = ref(bannerStore.bannerContent);
 
 const leftSlide = computed(() => slides.value[(currentIndex.value - 1 + slides.value.length) % slides.value.length]);
 const mainSlide = computed(() => slides.value[currentIndex.value]);
@@ -220,11 +138,3 @@ onUnmounted(() => {
   document.removeEventListener("click", handleClickOutside);
 });
 </script>
-<style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s ease-in-out;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-</style>

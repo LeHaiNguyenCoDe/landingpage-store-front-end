@@ -17,10 +17,9 @@
 </template>
 
 <script setup lang="ts">
-const features = [
-  { icon: 'i-custom-cup', title: "High Quality", description: "Crafted from top materials" },
-  { icon: 'i-custom-check', title: "Warranty Protection", description: "Over 2 years" },
-  { icon: 'i-custom-shipping', title: "Free Shipping", description: "Order over 150$" },
-  { icon: 'i-custom-customer-support', title: "24 / 7 Support", description: "Dedicated support" },
-];
+import { useFeatureStore } from '@/modules/home_page/store/itemsSection';
+import { storeToRefs } from 'pinia';
+
+const featureStore = useFeatureStore();
+const { features } = storeToRefs(featureStore);
 </script>

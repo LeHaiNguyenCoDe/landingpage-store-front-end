@@ -47,21 +47,11 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import HoverImage from "@/modules/home_page/components/itemsSection/HoverImage.vue";
-const shareContent = ref({
-  text: "Share your setup with",
-  hashtag: "#FuniroFurniture"
-});
-const images = [
-  "/items-image/items_01.png",
-  "/items-image/items_02.png",
-  "/items-image/items_03.png",
-  "/items-image/items_04.png",
-  "/items-image/items_05.png",
-  "/items-image/items_06.png",
-  "/items-image/items_07.png",
-  "/items-image/items_08.png",
-  "/items-image/items_09.png",
-];
+import { useShareStore } from '@/modules/home_page/store/itemsSection';
+import { storeToRefs } from 'pinia';
+
+const shareStore = useShareStore();
+const { shareContent, images } = storeToRefs(shareStore);
 
 const selectedImage = ref<string | null>(null);
 

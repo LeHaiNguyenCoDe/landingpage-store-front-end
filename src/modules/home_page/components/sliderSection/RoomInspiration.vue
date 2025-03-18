@@ -35,13 +35,7 @@
           <button class="bg-white absolute right-2vw top-1/2 f-w-18-44 f-h-18-44 cursor-pointer rounded-full flex items-center justify-center shadow-xl z-10" @click="nextSlide"><i class="i-custom-arrowprev text-btnorange f-w-12-16 f-h-12-16 transform-rotate-180"></i></button>
         </transition-group>
         <div class="w-full h-6vw flex items-center">
-          <div class="flex justify-center">
-            <span v-for="(slide, index) in slides" :key="index"
-              class="w-2 h-2 mx-1 rounded-full cursor-pointer transition-all duration-300"
-              :class="mainSlideIndex === index ? 'bg-btnorange' : 'bg-gray-300'"
-              @click="goToSlide(index)">
-            </span>
-          </div>
+          <Paginations :slides="slides" :currentIndex="mainSlideIndex" :goToSlide="goToSlide" />
         </div>
       </div>
     </div>
@@ -49,32 +43,14 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref } from "vue"
-const slides = ref([
-  {
-    image: "/main-image/main_img01.png",
-    number: '01',
-    roomName: 'Bed room',
-    text: 'Inner Peace'
-  },
-  {
-    image: "/main-image/main_img02.png",
-    number: '02',
-    roomName: 'Living room',
-    text: '(UX/UI)'
-  },
-  {
-    image: "/main-image/main_img03.png",
-    number: '03',
-    roomName: 'Bath room',
-    text: 'khách hàng'
-  },
-]);
+import Paginations from '@/modules/ui/PromoPaginations.vue';
+import { useRoomContentStore, useRoomStore } from "@/modules/home_page/store/sliderSection";
+import { storeToRefs } from "pinia";
 
-const roomContent = ref({
-  title: "50+ Beautiful rooms inspiration",
-  description: "Our designer already made a lot of beautiful prototype of rooms that inspire you",
-  buttonText: "Explore More"
-});
+const roomStore = useRoomStore();
+const { slides } = storeToRefs(roomStore);
+const roomContentStore = useRoomContentStore();
+const { roomContent } = storeToRefs(roomContentStore);
 
 const mainSlideIndex = ref(0);
 const mainSlide = computed(() => slides.value[mainSlideIndex.value]);
@@ -91,12 +67,3 @@ const goToSlide = (index: number) => {
   mainSlideIndex.value = index;
 };
 </script>
-<style>
-/* Hiệu ứng transition */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s ease-in-out;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-</style>
