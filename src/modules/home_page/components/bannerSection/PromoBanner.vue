@@ -38,13 +38,16 @@
               <!-- Panel -->
               <div
                 v-if="isVisible"
-                class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-lg p-1vw flex flex-col items-center gap-1vw"
+                class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-md p-1vw flex flex-col gap-1vw z-1 text-title"
               >
-                <router-link to="/login">
-                  <span class="font-semibold f-text-8-16 cursor-pointer">Đăng nhập</span>
-                </router-link>
-                <router-link to="/register">
-                  <span class=" text-red-500 f-text-8-16 cursor-pointer">Đăng ký</span>
+                <div class="w-full flex flex-col">
+                  <span class="f-text-16-28 font-medium">Funiro.</span>
+                  <span class="f-text-10-14 text-gray-500">Information management</span>
+                  <div class="border my-1vw border-gray-500"></div>
+                </div>
+                <router-link v-for="(item, index) in auth" :key="index" :to="item.link" class="flex gap-1vw text-gray-500">
+                  <span class="font-semibold f-text-8-16 cursor-pointer">{{ item.icons}}</span>
+                  <span class="f-text-8-16 cursor-pointer">{{ item.content}}</span>
                 </router-link>
               </div>
             </div>
@@ -130,6 +133,44 @@ const slides = ref([
     detail: 'Bath room',
     price: 'khách hàng'
   }
+]);
+
+const auth = ref([
+  {
+    icons: "",
+    content: "Thông tin cá nhân",
+    link: "#"
+  },
+  {
+    icons: "",
+    content: "Cài đặt hệ thống",
+    link: "#"
+  },
+  {
+    icons: "",
+    content: "Ngôn ngữ",
+    link: "#"
+  },
+  {
+    icons: "",
+    content: "Hỗ trợ khách hàng",
+    link: "#"
+  },
+  {
+    icons: "",
+    content: "Hướng dẫn sử dụng",
+    link: "#"
+  },
+  {
+    icons: "",
+    content: "Thay đổi mật khẩu",
+    link: "#"
+  },
+  {
+    icons: "",
+    content: "Đăng xuất",
+    link: "/login"
+  },
 ]);
 const menuItems = ref([
   { name: "Products", link: "#" },

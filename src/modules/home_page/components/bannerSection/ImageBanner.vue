@@ -4,13 +4,13 @@
       <img :src="leftImage.image" :key="leftImage.image" alt="" class="w-25vw h-40vw object-cover">
     </transition>
 
-    <div class="relative z-0 h-fit">
+    <div class="relative h-fit">
       <transition name="slide" mode="out-in">
-        <img :src="mainImage.image" :key="mainImage.image" alt="" class="w-65vw h-40vw">
+        <img :src="mainImage.image" :key="mainImage.image" alt="" class="w-65vw h-40vw object-cover">
       </transition>
       <transition name="slide" mode="out-in">
         <div
-          class="absolute z-10 flex flex-col bg-white p-1vw right-2vw bottom-2vw opacity-90 xl:w-17vw md:w-20vw w-30vw h-auto"
+          class="absolute flex flex-col bg-white p-1vw right-2vw bottom-2vw opacity-90 xl:w-17vw md:w-20vw w-30vw h-auto"
           :key="mainImage.name">
           <span class="font-medium f-text-12-32 text-title">{{ mainImage.name }}</span>
           <span class="text-classic f-text-10-16">{{ mainImage.detail }}</span>
