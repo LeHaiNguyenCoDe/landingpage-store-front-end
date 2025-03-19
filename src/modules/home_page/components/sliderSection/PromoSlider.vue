@@ -8,10 +8,12 @@
         nextEl: '.custom-next',
         prevEl: '.custom-prev'
       }"
-      :pagination="{ el: '.custom-pagination', clickable: true }"
-      :modules="modules"
+      :modules="[Navigation]"
       class="w-full p-2vw"
+      @swiper="(swiper) => (swiperRef = swiper)"
+      @slideChange="onSlideChange"
     >
+
       <swiper-slide v-for="(post, index) in posts" :key="index">
         <div class="bg-white hover:text-gray-500">
           <div class="overflow-hidden"><img :src="post.image" alt="Post Image" class="w-30vw h-15vw object-cover hover:scale-110 transition-transform duration-300"></div>
@@ -30,55 +32,33 @@
     <button class="custom-next f-w-18-44 f-h-18-44 bg-white absolute z-10 right-0.5vw top-2/5 cursor-pointer rounded-full flex items-center justify-center shadow-xl">
       <i class="i-custom-arrowprev text-btnorange f-w-12-16 f-h-12-16 transform-rotate-180"></i>
     </button>
-    <div class="custom-pagination mt-4 flex justify-center space-x-1vw"></div>
+    <Paginations :slides="posts" :currentIndex="currentIndex" :goToSlide="goToSlide" :dotsCount="posts.length - 2" />
   </section>
 </template>
 
 <script lang="ts" setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
+import type { Swiper as SwiperClass } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { ref } from "vue";
+import Paginations from "@/modules/ui/PromoPaginations.vue";
+import { usePostStore } from "@/modules/home_page/store/sliderSection";
+import { storeToRefs } from "pinia";
 
-const modules = ref([Navigation, Pagination]);
+const postStore = usePostStore();
+const { posts } = storeToRefs(postStore);
 
-const posts = ref([
-  {
-    title: "How to create a living <br> room to love",
-    date: "20 Jan 2020",
-    image: "/slider-image/slider_image_01.png"
-  },
-  {
-    title: "Solution for clean look working space",
-    date: "10 Jan 2020",
-    image: "/slider-image/slider_image_02.png"
-  },
-  {
-    title: "Make your cooking activity more fun with good setup",
-    date: "20 Jan 2020",
-    image: "/slider-image/slider_image_03.png"
-  },
-  {
-    title: "How to create a living <br> room to love",
-    date: "20 Jan 2020",
-    image: "/slider-image/slider_image_01.png"
-  },
-  {
-    title: "Solution for clean look working space",
-    date: "10 Jan 2020",
-    image: "/slider-image/slider_image_02.png"
-  },
-  {
-    title: "Make your cooking activity more fun with good setup",
-    date: "20 Jan 2020",
-    image: "/slider-image/slider_image_03.png"
+const swiperRef = ref<SwiperClass | null>(null);
+const currentIndex = ref(0);
+const onSlideChange = (swiper: SwiperClass) => {
+  currentIndex.value = swiper.activeIndex;
+};
+
+const goToSlide = (index: number) => {
+  if (swiperRef.value) {
+    swiperRef.value.slideTo(index);
   }
-]);
+};
 </script>
-<style scoped>
-:deep(.custom-pagination .swiper-pagination-bullet-active) {
-  @apply w-[2] h-[2] bg-[#E89F71] relative rounded-full transition-all duration-300;
-}
-</style>
