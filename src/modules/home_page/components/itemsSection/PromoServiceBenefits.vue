@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFeatureStore } from '@/modules/home_page/store/itemsSection';
+import { useFeatureStore } from '@/modules/home_page/stores/itemsSection';
 import { storeToRefs } from 'pinia';
 
 const featureStore = useFeatureStore();

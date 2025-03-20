@@ -44,7 +44,7 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue"
 import Paginations from '@/modules/ui/PromoPaginations.vue';
-import { useRoomContentStore, useRoomStore } from "@/modules/home_page/store/sliderSection";
+import { useRoomContentStore, useRoomStore } from "@/modules/home_page/stores/sliderSection";
 import { storeToRefs } from "pinia";
 
 const roomStore = useRoomStore();

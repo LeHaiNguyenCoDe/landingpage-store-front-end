@@ -47,7 +47,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import HoverImage from "@/modules/home_page/components/itemsSection/HoverImage.vue";
-import { useShareStore } from '@/modules/home_page/store/itemsSection';
+import { useShareStore } from '@/modules/home_page/stores/itemsSection';
 import { storeToRefs } from 'pinia';
 
 const shareStore = useShareStore();

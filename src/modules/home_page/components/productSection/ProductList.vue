@@ -59,7 +59,7 @@
 </template>
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { useAllProductStore } from "@/modules/home_page/store/productSection";
+import { useAllProductStore } from "@/modules/home_page/stores/productSection";
 const productStore = useAllProductStore();
 
 const { products, visibleCount } = storeToRefs(productStore);
