@@ -1,8 +1,8 @@
 export async function fetchProducts() {
   return [
-    { id: 1, image: "/public/image-banner/left_image.png", title: "Product 1" },
-    { id: 2, image: "/public/image-banner/left_image.png", title: "Product 2" },
-    { id: 3, image: "/public/image-banner/left_image.png", title: "Product 3" }
+    { name: "Modern Chair", image: "/public/image-banner/left_image.png", detail: "Comfortable wooden chair", price: "Rp 2.500.000" },
+    { name: "Minimalist Lamp", image: "/public/image-banner/main_image.png", detail: "Soft LED table lamp", price: "Rp 850.000" },
+    { name: "Elegant Table", image: "/public/image-banner/right_image.png", detail: "Luxury marble dining table", price: "Rp 12.000.000" }
   ];
 }
 
