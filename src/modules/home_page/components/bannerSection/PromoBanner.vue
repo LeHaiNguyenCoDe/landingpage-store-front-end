@@ -15,6 +15,33 @@
             </a>
           </nav>
         </div>
+        <div class="w-60vw flex items-center justify-between xl:mr-[-2.5vw]">
+          <input type="text" placeholder="Search for minimalist chair"
+            class="xl:w-35vw md:w-35vw w-30vw xl:h-3vw md:h-3vw h-5vw bg-white p-1vw f-text-8-14 outline-none focus:ring-0 focus:border-transparent">
+
+          <div class="flex gap-1vw items-center f-text-10-16">
+            <a href="#">
+              <i class="i-custom-heart f-text-10-24"></i>
+            </a>
+            <a href="#">
+              <i class="i-custom-cart f-text-10-24"></i>
+            </a>
+            <div class="relative" ref="panelRef">
+              <a href="#" @click.prevent="togglePanel">
+                <img :src="avatar" alt="Avatar" class="f-w-12-40 cursor-pointer">
+              </a>
+
+              <!-- Panel -->
+              <div
+                v-if="isVisible"
+                class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-lg p-1vw flex flex-col"
+              >
+                <button class="font-semibold f-text-8-16 cursor-pointer">Đăng nhập</button>
+                <button class="mt-1vw text-red-500 f-text-8-16 cursor-pointer">Đăng ký</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -59,7 +86,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useProductStore } from "@/modules/home_page/stores/products/productStore";
 import { useMenuStore } from "@/modules/home_page/stores/products/menuStore";
 import { useBannerStore } from "@/modules/home_page/stores/banner";
@@ -86,5 +113,8 @@ onMounted(async () => {
 });
 
 console.log("Slide Images:", productStore.slideImages);
-
+const isVisible = ref(false);
+const togglePanel = () => {
+  isVisible.value = !isVisible.value;
+};
 </script>
