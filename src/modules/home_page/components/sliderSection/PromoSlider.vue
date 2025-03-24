@@ -44,7 +44,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { ref } from "vue";
 import Paginations from "@/modules/ui/PromoPaginations.vue";
-import { usePostStore } from "@/modules/home_page/store/sliderSection";
+import { usePostStore } from "@/modules/home_page/stores/sliderSection";
 import { storeToRefs } from "pinia";
 
 const postStore = usePostStore();
