@@ -27,17 +27,24 @@
               <i class="i-custom-cart f-text-10-24"></i>
             </a>
             <div class="relative" ref="panelRef">
-              <a href="#" @click.prevent="togglePanel">
-                <img :src="avatar" alt="Avatar" class="f-w-12-40 cursor-pointer">
+              <a href="#" @click.prevent="authStore.togglePanel">
+                <img :src="authStore.avatar" alt="Avatar" class="f-w-12-40 cursor-pointer">
               </a>
 
               <!-- Panel -->
               <div
-                v-if="isVisible"
+                v-if="authStore.isVisible"
                 class="absolute right-0 top-full mt-1vw w-15vw bg-white shadow-lg rounded-lg p-1vw flex flex-col"
               >
-                <button class="font-semibold f-text-8-16 cursor-pointer">Đăng nhập</button>
-                <button class="mt-1vw text-red-500 f-text-8-16 cursor-pointer">Đăng ký</button>
+                <button
+                  v-for="item in authStore.auth"
+                  :key="item.link"
+                  @click="() => $router.push(item.link)"
+                  class="font-semibold f-text-8-16 cursor-pointer"
+                  :class="{ 'text-red-500': item.content === 'Đăng ký' }"
+                >
+                  {{ item.content }}
+                </button>
               </div>
             </div>
           </div>
@@ -87,21 +94,26 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import { useProductStore } from "@/modules/home_page/stores/products/productStore";
+import { useAuth, useProductStore } from "@/modules/home_page/stores/banner";
 import { useMenuStore } from "@/modules/home_page/stores/products/menuStore";
 import { useBannerStore } from "@/modules/home_page/stores/banner";
 import Paginations from "@/modules/ui/PromoPaginations.vue";
 import ImageBanner from "./ImageBanner.vue";
+import { onClickOutside } from "@vueuse/core";
 
 const productStore = useProductStore();
 const menuStore = useMenuStore();
 const bannerStore = useBannerStore();
+const authStore = useAuth();
+const panelRef = ref(null);
 
 const slideActions = [
   { iconClass: "i-custom-arrowprev f-w-10-16 f-h-10-16 bg-btnorange", bgClass: "bg-orange-200", method: productStore.prevSlide },
   { iconClass: "i-custom-arrow f-w-10-16 f-h-10-16", bgClass: "bg-btnorange", method: productStore.nextSlide },
 ];
-
+onClickOutside(panelRef, () => {
+  authStore.closePanel();
+});
 onMounted(async () => {
   await productStore.loadProducts();
   await menuStore.loadMenuItems();
@@ -113,8 +125,4 @@ onMounted(async () => {
 });
 
 console.log("Slide Images:", productStore.slideImages);
-const isVisible = ref(false);
-const togglePanel = () => {
-  isVisible.value = !isVisible.value;
-};
 </script>

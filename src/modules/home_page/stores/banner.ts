@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { fetchProducts } from '../services/productService';
+import { ref } from 'vue';
 
 interface Product {
   image: string;
@@ -87,69 +88,38 @@ export const useProductStore = defineStore('product', {
   }
 });
 
-
-
 interface Auth {
   icons: string;
   content: string;
   link: string;
 }
 
-export const useAuth = defineStore('auth', {
+export const useAuth = defineStore("auth", {
   state: () => ({
     auth: [
-      // {
-      //   icons: "",
-      //   content: "Thông tin cá nhân",
-      //   link: "#"
-      // },
-      // {
-      //   icons: "",
-      //   content: "Cài đặt hệ thống",
-      //   link: "#"
-      // },
-      // {
-      //   icons: "",
-      //   content: "Ngôn ngữ",
-      //   link: "#"
-      // },
-      // {
-      //   icons: "",
-      //   content: "Hỗ trợ khách hàng",
-      //   link: "#"
-      // },
-      // {
-      //   icons: "",
-      //   content: "Hướng dẫn sử dụng",
-      //   link: "#"
-      // },
-      // {
-      //   icons: "",
-      //   content: "Thay đổi mật khẩu",
-      //   link: "#"
-      // },
-      // {
-      //   icons: "",
-      //   content: "Đăng xuất",
-      //   link: "/login"
-      // }
       {
         icons: "",
         content: "Đăng nhập",
-        link: "/login"
+        link: "/login",
       },
       {
         icons: "",
         content: "Đăng ký",
-        link: "/register"
+        link: "/register",
       },
     ] as Auth[],
+    isVisible: ref(false),
+    avatar: "/auth/avatar.png",
   }),
   actions: {
-
+    togglePanel() {
+      this.isVisible = !this.isVisible;
+    },
+    closePanel() {
+      this.isVisible = false;
+    },
   },
 });
-
 
 interface MenuItems {
   name: string;
