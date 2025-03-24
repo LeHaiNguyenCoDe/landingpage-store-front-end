@@ -30,7 +30,7 @@
           v-for="(action, index) in slideActions"
           :key="index"
           :class="action.bgClass"
-          class="f-w-18-48 f-h-18-48 rounded-full"
+          class="f-w-18-48 f-h-18-48 rounded-full flex items-center justify-center"
           @click="action.method"
         >
           <i :class="action.iconClass"></i>
@@ -71,8 +71,8 @@ const menuStore = useMenuStore();
 const bannerStore = useBannerStore();
 
 const slideActions = [
-  { iconClass: "i-custom-arrowprev f-w-12-16 f-h-12-16 bg-btnorange", bgClass: "bg-orange-200", method: productStore.prevSlide },
-  { iconClass: "i-custom-arrow f-w-12-16 f-h-12-16", bgClass: "bg-btnorange", method: productStore.nextSlide },
+  { iconClass: "i-custom-arrowprev f-w-10-16 f-h-10-16 bg-btnorange", bgClass: "bg-orange-200", method: productStore.prevSlide },
+  { iconClass: "i-custom-arrow f-w-10-16 f-h-10-16", bgClass: "bg-btnorange", method: productStore.nextSlide },
 ];
 
 onMounted(async () => {

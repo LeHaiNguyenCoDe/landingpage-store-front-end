@@ -1,6 +1,6 @@
 <template>
   <button
-    class="relative group overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+    class="relative group overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
     :aria-label="ariaLabel"
   >
     <img
