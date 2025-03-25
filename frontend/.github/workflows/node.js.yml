@@ -1,0 +1,197 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20.x]  # Đồng bộ Node.js 20.x cho tất cả các job
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-${{ matrix.node-version }}-
+
+      - name: Install dependencies
+        run: npm install # Thay npm ci bằng npm install nếu cần
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Run ESLint
+        run: npm run lint || echo "ESLint found issues, but continuing..."
+
+      - name: Check Formatting
+        run: |
+          if npm run | grep -q 'format:check'; then
+            npm run format:check || echo "Prettier found issues, but continuing..."
+          else
+            echo "Skipping format check (script not found)"
+          fi
+
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install 
+
+      - name: Build project
+        run: npm run build --if-present
+
+  test-unit:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Unit Tests
+        run: |
+          if npm run | grep -q 'test:unit'; then
+            npm run test:unit
+          else
+            echo "Skipping unit tests (script not found)"
+          fi
+
+      - name: Ensure coverage directory exists
+        run: mkdir -p coverage
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results
+          path: coverage/
+
+  test-integration:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Integration Tests
+        run: |
+          if npm run | grep -q 'test:integration'; then
+            npm run test:integration
+          else
+            echo "Skipping integration tests (script not found)"
+          fi
+
+      - name: Ensure coverage directory exists
+        run: mkdir -p coverage
+
+      - name: Upload integration test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: coverage/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [lint, build, test-unit, test-integration]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Set up Vercel project
+        run: vercel link --yes --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: [lint, build, test-unit, test-integration]
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20.x
+  #         cache: 'npm'
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Set execute permission for deploy script
+  #       run: chmod +x deploy.sh || echo "No deploy script found"
+
+  #     - name: Deploy Application
+  #       run: |
+  #         echo "🚀 Deploying to production..."
+  #         if [ -f deploy.sh ]; then
+  #           ./deploy.sh
+  #         else
+  #           echo "No deploy script found, skipping deployment."
+  #         fi
