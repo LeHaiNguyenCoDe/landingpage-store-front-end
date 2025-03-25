@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between items-center overflow-hidden">
     <template v-for="(image, index) in validImages" :key="index">
-      <transition name="slide" mode="out-in">
+      <transition name="slide" mode="out-in" class="transition-transform duration-500">
         <div v-if="index === 1" class="relative h-fit">
           <img :src="image.image" alt="" class="w-65vw h-40vw object-cover">
           <div class="absolute flex flex-col bg-white p-1vw right-2vw bottom-2vw opacity-90 xl:w-17vw md:w-20vw w-30vw h-auto">
